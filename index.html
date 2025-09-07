@@ -1,399 +1,199 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BigCode A.Ş. - Geleceğin Yazılımları</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BigCodes Yazılım ve Kodlama A.Ş.</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #0f172a;
-      color: #e2e8f0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      color: #222;
     }
     header {
-      background-color: #1e293b;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      z-index: 1001;
+      background: linear-gradient(135deg, #0f62fe, #001f3f);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
     }
-    h1 {
-      color: #38bdf8;
-      font-size: 1.8rem;
-      font-weight: 700;
+    header img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 1rem;
     }
-    .menu-toggle {
-      display: none; /* Masaüstünde gizli */
-      flex-direction: column;
-      cursor: pointer;
-      width: 30px;
-      height: 25px;
-      justify-content: space-between;
-      z-index: 1100;
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
     }
-    .menu-toggle .bar {
-      height: 4px;
-      background-color: #38bdf8;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    .menu-toggle.active .bar:nth-child(1) {
-      transform: translateY(10px) rotate(45deg);
-    }
-    .menu-toggle.active .bar:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.active .bar:nth-child(3) {
-      transform: translateY(-10px) rotate(-45deg);
+    header p {
+      font-size: 1.1rem;
+      margin-top: .5rem;
     }
     nav {
       display: flex;
-      gap: 15px;
+      justify-content: center;
+      background: #001f3f;
     }
     nav a {
-      color: #e2e8f0;
+      color: white;
       text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.3s ease;
+      padding: 1rem;
+      transition: background 0.3s;
     }
     nav a:hover {
-      color: #38bdf8;
+      background: #0f62fe;
     }
     section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-      display: none; /* Tüm içerikleri gizle başta */
-      animation: fadeIn 0.5s ease-in-out;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    section h2 {
+      color: #0f62fe;
+      margin-bottom: .5rem;
     }
-    section.active {
-      display: block; /* Aktif olan içerik göster */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
     }
-    .hero {
-      text-align: center;
-      display: block; /* Anasayfa hep görünsün */
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
     }
-    .hero svg {
-      width: 200px;
-      height: 200px;
-      margin-bottom: 20px;
-      fill: #38bdf8;
+    .card:hover {
+      transform: translateY(-5px);
     }
-    .hero h2 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      color: #38bdf8;
+    /* Gizlilik Politikası stili */
+    .policy-box {
+      background:white;
+      padding:1.5rem;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      line-height:1.6;
+      color:#222;
+      margin-top:1rem;
     }
-    .hero p {
-      font-size: 1.2rem;
-      line-height: 1.8;
+    .policy-box h3 {
+      color:#0f62fe;
+      margin-top:1rem;
     }
-    h3 {
-      font-size: 1.8rem;
-      color: #38bdf8;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    .project {
-      background-color: #1e293b;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-    .project img {
-      width: 100%;
-      max-height: 220px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    .project h4 {
-      font-size: 1.4rem;
-      color: #38bdf8;
-      margin-bottom: 8px;
-    }
-    .project p {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* İLETİŞİM BÖLÜMÜ ÖZELLEŞTİRMELERİ */
-    .contact {
-      margin-top: 50px;
-      background-color: rgba(21, 38, 60, 0.85);
-      padding: 30px 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-    .contact p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-    /* mail-button stili kaldırıldı, artık buton yok */
-
-    /* Sponsorluk Bölümü Stili */
-    .sponsor-section {
-      text-align: center;
-      margin-top: 30px;
-      padding: 20px;
-      background-color: #1e293b;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    .sponsor-section h4 {
-      color: #38bdf8;
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
-    .sponsor-section p {
-      font-size: 1rem;
-      color: #cbd5e1;
-    }
-    .sponsor-section img {
-      max-width: 150px;
-      height: auto;
-      margin-top: 15px;
-      filter: grayscale(10%);
-      transition: filter 0.3s ease;
-    }
-    .sponsor-section img:hover {
-      filter: grayscale(0%);
-    }
-
     footer {
-      background-color: #1e293b;
-      padding: 20px;
+      background: #001f3f;
+      color: white;
       text-align: center;
-      color: #94a3b8;
-      font-size: 0.9rem;
-      margin-top: 40px;
+      padding: 1.5rem;
+      margin-top: 2rem;
     }
-
-    /* Mobil */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: flex; /* Mobilde görünür */
-      }
-      nav {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background-color: #1e293b;
-        flex-direction: column;
-        overflow: hidden;
-        max-height: 0; /* Başlangıçta gizli */
-        transition: max-height 0.4s ease;
-        border-radius: 0 0 10px 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        z-index: 1000;
-      }
-      nav.open {
-        max-height: 250px; /* Açıldığında yüksekliği */
-      }
-      nav a {
-        padding: 15px 20px;
-        border-top: 1px solid #334155;
-      }
-      .hero h2 {
-        font-size: 1.8rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      h3 {
-        font-size: 1.5rem;
-      }
-    }
-    /* Masaüstü */
-    @media (min-width: 769px) {
-      nav {
-        max-height: none !important; /* Masaüstünde her zaman görünür */
-        position: static;
-        flex-direction: row;
-      }
-      nav a {
-        border-top: none;
-      }
-      section {
-        display: block !important; /* Masaüstünde tüm içerik açık */
-      }
+    footer a {
+      color: #0f62fe;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç/kapat" role="button" tabindex="0">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-    </div>
-    <h1>BigCode A.Ş.</h1>
-    <nav id="nav-menu">
-      <a href="#" data-section="hero">Anasayfa</a>
-      <a href="#" data-section="about">Hakkımızda</a>
-      <a href="#" data-section="projects">Projeler</a>
-      <a href="#" data-section="contact">İletişim</a>
-    </nav>
+    <img src="logo.png" alt="BigCodes Logo">
+    <h1>BigCodes Yazılım ve Kodlama A.Ş.</h1>
+    <p>🚀 Dijital çözümler, genç fikirler</p>
   </header>
 
-  <section class="hero active" id="hero">
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="BigCode Logo" role="img">
-      <circle cx="50" cy="50" r="45" stroke="#38bdf8" stroke-width="5" fill="none"/>
-      <text x="50%" y="55%" text-anchor="middle" fill="#38bdf8" font-size="28" font-family="Roboto" dy=".3em">BC</text>
-    </svg>
-    <h2>Kodla büyür, teknolojiyle gelişir</h2>
+  <nav>
+    <a href="#hakkimizda">Hakkımızda</a>
+    <a href="#hizmetler">Hizmetler</a>
+    <a href="#iletisim">İletişim</a>
+    <a href="#politikalar">Politikalar</a>
+  </nav>
+
+  <section id="hakkimizda">
+    <h2>Hakkımızda</h2>
     <p>
-      BigCode A.Ş., genç yazılımcılar tarafından kurulan sanal bir yazılım girişimidir.
-      Yenilikçi fikirlerimizle geleceği şekillendiriyoruz ve **ElitSafe A.Ş.**'nin değerli katkılarıyla daha güçlüyüz.
+      BigCodes Yazılım ve Kodlama A.Ş., genç ve dinamik ekibiyle yazılım, mobil uygulama, oyun geliştirme
+      ve yapay zekâ alanlarında yenilikçi çözümler sunmaktadır. Misyonumuz, teknolojiyi herkes için
+      erişilebilir ve faydalı hale getirmektir.
     </p>
   </section>
 
-  <section class="about" id="about">
-    <h3>Hakkımızda</h3>
-    <p>
-      2025 yılında genç bir girişimci ruhla kurulan BigCode A.Ş., yazılım alanında
-      özgün çözümler geliştirmeyi amaçlayan sanal bir şirkettir. 16-20 yaşları arasındaki ekip üyeleriyle birlikte
-      geleceğin teknolojilerine bugünden yatırım yapıyoruz. Misyonumuz, kullanıcı odaklı, yenilikçi ve sürdürülebilir
-      yazılım çözümleri üreterek dijital dünyada fark yaratmaktır. Vizyonumuz ise, genç yetenekleri bir araya getirerek
-      dünya çapında tanınan bir teknoloji şirketi olmaktır.
-    </p>
-  </section>
-
-  <section class="projects" id="projects">
-    <h3>Projeler</h3>
-    <div class="project">
-      <img src="https://via.placeholder.com/800x200?text=FlowEX+-+Sirket+Yonetimi" alt="FlowEX Projesi" />
-      <h4>FlowEX (Şirket Yönetim Uygulaması)</h4>
-      <p>
-        Mobil ve masaüstü uyumlu, kapsamlı bir şirket yönetimi uygulaması. Kredi kartı harcamaları,
-        ürün/stok takibi, cari hesap yönetimi ve fatura/irsaliye işlemleri gibi birçok modülü barındırır.
-        İşletmelerin operasyonlarını kolaylaştırmak için tasarlanmıştır.
-      </p>
-    </div>
-    <div class="project">
-      <img src="https://via.placeholder.com/800x200?text=Yilan+Oyunu+(Kivy)" alt="Yılan Oyunu" />
-      <h4>Yılan Oyunu (Kivy)</h4>
-      <p>Mobil cihazlar için parmakla oynanabilen, özelleştirilebilir klasik yılan oyunu. Akıcı animasyonlar ve sezgisel kontrollerle oyun deneyimi sunar.</p>
-    </div>
-    <div class="project">
-      <img src="https://via.placeholder.com/800x200?text=Flappy+Bird+Klonu" alt="Flappy Bird Klonu" />
-      <h4>Flappy Bird Klonu</h4>
-      <p>HTML/CSS/JS ile mod seçmeli ve animasyonlu Flappy Bird klonu. Farklı zorluk seviyeleri ve eğlenceli görsel efektlerle kullanıcıları içine çeker.</p>
+  <section id="hizmetler">
+    <h2>Hizmetlerimiz</h2>
+    <div class="services">
+      <div class="card">
+        <h3>💻 Web & Mobil Uygulamalar</h3>
+        <p>Kullanıcı dostu, güvenli ve ölçeklenebilir çözümler.</p>
+      </div>
+      <div class="card">
+        <h3>🎮 Oyun Geliştirme</h3>
+        <p>Bağımlılık yapıcı, eğlenceli ve yenilikçi oyun projeleri.</p>
+      </div>
+      <div class="card">
+        <h3>🤖 Yapay Zekâ Çözümleri</h3>
+        <p>Akıllı algoritmalar ve makine öğrenimi entegrasyonları.</p>
+      </div>
+      <div class="card">
+        <h3>📊 Finans & Fatura Sistemleri</h3>
+        <p>Profesyonel iş yönetimi için modern altyapılar.</p>
+      </div>
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <h3>İletişim</h3>
-    <p>
-      Bizimle iletişime geçmek için lütfen aşağıdaki e-posta adresini kullanın:
-      <br>
-      <strong style="color: #38bdf8;">bigcodesasturkey@gmail.com</strong>
-    </p>
-    <p style="margin-top: 15px; font-size: 0.95rem; color: #a0cfff;">
-      E-posta adresini kopyalayarak kendi mail uygulamanızdan bize ulaşabilirsiniz.
-    </p>
+  <section id="iletisim">
+    <h2>İletişim</h2>
+    <p>Bize ulaşmak için e-posta gönderebilirsiniz:</p>
+    <p>📩 <a href="mailto:bigcodesasturkey@gmail.com">bigcodesasturkey@gmail.com</a></p>
+  </section>
 
-    <div class="sponsor-section">
-      <h4>Baş Sponsorumuz</h4>
-      <p>Teknolojideki yolculuğumuzda bize destek olan **ElitSafe A.Ş.**'ye teşekkür ederiz. ElitSafe A.Ş., siber güvenlik ve veri koruma alanında lider çözümler sunmaktadır.</p>
+  <section id="politikalar">
+    <h2>📄 Gizlilik Politikası</h2>
+    <div class="policy-box">
+      <h3>1. Toplanan Bilgiler</h3>
+      <ul>
+        <li>Ad, soyad, e-posta, telefon</li>
+        <li>Uygulama ve web kullanım verileri (IP, tarayıcı, tarih)</li>
+        <li>Ödeme bilgileri (sadece gerekli durumlarda)</li>
+      </ul>
+
+      <h3>2. Bilgi Kullanımı</h3>
+      <ul>
+        <li>Hizmetleri kişiselleştirmek ve geliştirmek</li>
+        <li>Kullanıcı desteği sağlamak</li>
+        <li>Yasal yükümlülükleri yerine getirmek</li>
+        <li>Pazarlama ve duyurular (kullanıcının onayı ile)</li>
+      </ul>
+
+      <h3>3. Bilgi Paylaşımı</h3>
+      <ul>
+        <li>Kişisel bilgiler üçüncü taraflarla paylaşılmaz, satılmaz veya kiralanmaz</li>
+        <li>Yalnızca yasal zorunluluk veya hizmet gerekliliğinde paylaşılır</li>
+      </ul>
+
+      <h3>4. Çerezler ve Analitik</h3>
+      <ul>
+        <li>Web sitemizde çerezler kullanılır; kullanıcı deneyimi ve site analizleri için</li>
+        <li>Kullanıcılar çerezleri tarayıcı ayarlarından yönetebilir</li>
+      </ul>
+
+      <h3>5. Veri Güvenliği</h3>
+      <ul>
+        <li>Tüm kullanıcı verileri güvenli sunucularda saklanır</li>
+        <li>Veri iletimi şifreleme protokolleri (HTTPS) ile korunur</li>
+        <li>Yetkisiz erişim, veri kaybı veya kötüye kullanım riskini en aza indirmek için düzenli güvenlik kontrolleri yapılır</li>
+      </ul>
+
+      <h3>6. Politika Değişiklikleri</h3>
+      <ul>
+        <li>Politika zaman zaman güncellenebilir</li>
+        <li>Önemli değişikliklerde kullanıcı bilgilendirilir</li>
+      </ul>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 BigCode A.Ş. Tüm hakları saklıdır. **ElitSafe A.Ş.**'nin katkılarıyla.
+    <p>© 2025 BigCodes Yazılım ve Kodlama A.Ş. | Tüm Hakları Saklıdır.</p>
   </footer>
-
-  <script>
-    const menuToggle = document.getElementById("menu-toggle");
-    const navMenu = document.getElementById("nav-menu");
-    const sections = document.querySelectorAll("section");
-    const navLinks = navMenu.querySelectorAll("a");
-
-    // Hamburger menü tıklama olayı
-    if (menuToggle) { // Elementin varlığını kontrol et
-        menuToggle.addEventListener("click", () => {
-            navMenu.classList.toggle("open");
-            menuToggle.classList.toggle("active");
-        });
-    }
-
-    // Navigasyon linklerine tıklama olayı
-    navLinks.forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-
-        const targetSection = link.getAttribute("data-section");
-
-        // Mobilde menüyü kapat
-        if (window.innerWidth <= 768) {
-          navMenu.classList.remove("open");
-          menuToggle.classList.remove("active");
-        }
-
-        // Tüm bölümleri gizle, sadece seçileni göster
-        sections.forEach(sec => {
-          if (sec.id === targetSection) {
-            sec.classList.add("active");
-            sec.scrollIntoView({behavior: "smooth"});
-          } else {
-            sec.classList.remove("active");
-          }
-        });
-      });
-    });
-
-    // Masaüstü genişliğinde tüm bölümleri göster, mobil genişlikte sadece anasayfa açık olsun
-    function checkWidth() {
-      if (window.innerWidth > 768) {
-        sections.forEach(sec => sec.classList.add("active"));
-        if (navMenu) { // Elementin varlığını kontrol et
-            navMenu.classList.remove("open");
-        }
-        if (menuToggle) { // Elementin varlığını kontrol et
-            menuToggle.classList.remove("active");
-        }
-      } else {
-        // Mobilde anasayfa açık olsun, diğerleri kapalı
-        sections.forEach(sec => {
-          if (sec.id === "hero") {
-            sec.classList.add("active");
-          } else {
-            sec.classList.remove("active");
-          }
-        });
-      }
-    }
-
-    // Sayfa yüklendiğinde ve pencere boyutu değiştiğinde çalıştır
-    window.addEventListener("resize", checkWidth);
-    window.addEventListener("load", checkWidth);
-
-  </script>
 </body>
 </html>
